@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/online-shop/static/css/main.63a44952.chunk.css",
+    "main.js": "/online-shop/static/js/main.8643570b.chunk.js",
+    "main.js.map": "/online-shop/static/js/main.8643570b.chunk.js.map",
+    "runtime-main.js": "/online-shop/static/js/runtime-main.34a7dfe1.js",
+    "runtime-main.js.map": "/online-shop/static/js/runtime-main.34a7dfe1.js.map",
+    "static/js/2.f13dab9c.chunk.js": "/online-shop/static/js/2.f13dab9c.chunk.js",
+    "static/js/2.f13dab9c.chunk.js.map": "/online-shop/static/js/2.f13dab9c.chunk.js.map",
+    "index.html": "/online-shop/index.html",
+    "static/css/main.63a44952.chunk.css.map": "/online-shop/static/css/main.63a44952.chunk.css.map",
+    "static/js/2.f13dab9c.chunk.js.LICENSE.txt": "/online-shop/static/js/2.f13dab9c.chunk.js.LICENSE.txt",
+    "static/media/bac2.a8de51a6.jpg": "/online-shop/static/media/bac2.a8de51a6.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34a7dfe1.js",
+    "static/js/2.f13dab9c.chunk.js",
+    "static/css/main.63a44952.chunk.css",
+    "static/js/main.8643570b.chunk.js"
+  ]
+}
