@@ -4,8 +4,6 @@ import ProductItem from "../products/ProductItem";
 
 const Products: React.FC = () => {
   const productsState = useSelector((state: RootStateOrAny) => state.products);
-
-  console.log(productsState.activeCategory);
   const activeProducts = productsState.products.filter(
     (product: any) =>
       product.category.toUpperCase() ===
@@ -15,9 +13,11 @@ const Products: React.FC = () => {
   const productsList = activeProducts.map((product: any) => (
     <ProductItem
       key={product.id}
+      id={product.id}
       src={product.image}
       title={product.title}
       price={product.price}
+      description={product.description}
     />
   ));
 

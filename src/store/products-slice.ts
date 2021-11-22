@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface ProductsState {
+  categories: string[];
+  products: [];
+  activeCategory: string;
+}
+
+const initialState: ProductsState = {
   categories: [],
   products: [],
   activeCategory: "",

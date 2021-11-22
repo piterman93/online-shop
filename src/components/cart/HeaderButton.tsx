@@ -1,30 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 import Icon from "./Icon";
 
-const HeaderButton: React.FC = (props) => {
+const HeaderButton: React.FC = () => {
   const [isBtnBump, setIsBtnBump] = useState(false);
-  // const context = useContext(CartContext);
 
-  // const numberOfCartItems = context.items.reduce((currentNumber, item) => {
-  //   return currentNumber + item.amount;
-  // }, 0);
+  const cart = useSelector((state: RootStateOrAny) => state.cart);
 
-  // const { items } = context;
+  const numberOfCartItems = cart.items.reduce(
+    (currentNumber: number, item: any) => {
+      return currentNumber + item.amount;
+    },
+    0
+  );
 
-  // useEffect(() => {
-  //   if (items.length === 0) return;
+  const { items } = cart;
 
-  //   setIsBtnBump(true);
+  useEffect(() => {
+    if (items.length === 0) return;
 
-  //   const timer = setTimeout(() => {
-  //     setIsBtnBump(false);
-  //   }, 300);
+    setIsBtnBump(true);
 
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, [items]);
+    const timer = setTimeout(() => {
+      setIsBtnBump(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
 
   const btnClasses = `cart__button ${isBtnBump ? "bump" : ""}`;
 
@@ -34,7 +39,7 @@ const HeaderButton: React.FC = (props) => {
         <Icon />
       </span>
       <span>Your cart</span>
-      <span className="badge">0</span>
+      <span className="badge">{numberOfCartItems}</span>
     </button>
   );
 };

@@ -8,7 +8,11 @@ import "../../styles/App.scss";
 import { productsActions } from "../../store/products-slice";
 import HeaderButton from "../cart/HeaderButton";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  showCartHandler: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ showCartHandler }) => {
   const products = useSelector((state: RootStateOrAny) => state.products);
 
   const dispatch = useDispatch();
@@ -21,6 +25,7 @@ const Header: React.FC = () => {
       <Link to="/products"> {item}</Link>
     </li>
   ));
+
   return (
     <header className="header">
       <h1>Shop App</h1>
@@ -30,13 +35,13 @@ const Header: React.FC = () => {
             <NavLink to="/home">About us</NavLink>
           </li>
           <li>
-            <NavLink to="#">Products</NavLink>
+            Products
             <ul className="productsList">{productsList}</ul>
           </li>
           <li>
             <NavLink to="/home">Contact</NavLink>
           </li>
-          <li>
+          <li onClick={showCartHandler}>
             <HeaderButton />
           </li>
         </ul>

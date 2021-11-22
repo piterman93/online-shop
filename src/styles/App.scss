@@ -21,6 +21,7 @@
         li {
           font-size: 18px;
           position: relative;
+          cursor: pointer;
 
           &:hover {
             .productsList {
@@ -36,7 +37,7 @@
             color: white;
           }
           .productsList {
-            margin: 0 1rem;
+            margin-top: 1.4rem;
             padding: 0.25rem 0.5rem;
             display: flex;
             flex-direction: column;
@@ -181,6 +182,11 @@
       flex-wrap: wrap;
       padding: 2rem;
 
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
       .product {
         width: 320px;
         height: 320px;
@@ -207,6 +213,84 @@
           width: 70%;
           height: 70%;
           object-fit: cover;
+        }
+      }
+    }
+
+    .product__details {
+      margin-top: 2rem;
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+
+      .image {
+        width: 450px;
+        height: 450px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .description {
+        flex: 0.7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        h3 {
+          margin: 2rem 0;
+        }
+
+        h6 {
+          margin-bottom: 2rem;
+        }
+
+        p {
+          font-size: 20px;
+          font-weight: bold;
+          margin-bottom: 2rem;
+        }
+
+        .actions {
+          .button__cart {
+            font-weight: bold;
+            color: #8a2b06;
+            border: 1px solid #8a2b06;
+            text-align: center;
+            border-radius: 25px;
+            background-color: #8a2b06;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem 2rem;
+
+            &:hover,
+            &:active {
+              background-color: #7c2705;
+            }
+          }
+          .button__alt {
+            cursor: pointer;
+            font-weight: bold;
+            background-color: transparent;
+            border: 1px solid #8a2b06;
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            margin-left: 1rem;
+
+            &:hover,
+            &:active {
+              background-color: #5a1a01;
+              border-color: #5a1a01;
+              color: white;
+            }
+          }
         }
       }
     }
