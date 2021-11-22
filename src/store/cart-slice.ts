@@ -68,6 +68,16 @@ const cartSlice = createSlice({
           existingItem!.totalPrice - existingItem!.price;
       }
     },
+    getItemsFromLocalStorage(state, action) {
+      state.items = action.payload.items;
+      state.totalPrice = action.payload.price;
+    },
+    removeItemsFromLocalStorage(state) {
+      localStorage.removeItem("cart");
+      localStorage.removeItem("price");
+      state.items = [];
+      state.totalPrice = 0;
+    },
   },
 });
 

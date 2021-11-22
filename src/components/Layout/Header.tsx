@@ -20,7 +20,10 @@ const Header: React.FC<HeaderProps> = ({ showCartHandler }) => {
   const productsList = products.categories.map((item: any) => (
     <li
       key={item}
-      onClick={() => dispatch(productsActions.setActiveCategory(item))}
+      onClick={() => {
+        localStorage.setItem("activeCategory", item);
+        dispatch(productsActions.setActiveCategory(item));
+      }}
     >
       <Link to="/products"> {item}</Link>
     </li>

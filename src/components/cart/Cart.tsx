@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import "../../styles/Modal.scss";
+
+import { cartActions } from "../../store/cart-slice";
 
 import Modal from "../../UI/Modal";
 import CartItem from "./CartItem";
@@ -12,6 +14,13 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ onClose }) => {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
+  const dispatch = useDispatch();
+
+  const totalOrderPrice = cartState.totalPrice.toFixed(2);
+
+  const clearLocalStorage = () => {
+    dispatch(cartActions.removeItemsFromLocalStorage());
+  };
 
   const cartItems = (
     <ul className="cart__items">
@@ -28,8 +37,6 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
     </ul>
   );
 
-  const totalOrderPrice = cartState.totalPrice.toFixed(2);
-
   const content = (
     <Fragment>
       {cartItems}
@@ -40,7 +47,9 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
         </span>
       </div>
       <div className="actions">
-        <button className="order">Order</button>
+        <button className="order" onClick={clearLocalStorage}>
+          Order
+        </button>
         <button onClick={onClose}>Close</button>
       </div>
     </Fragment>

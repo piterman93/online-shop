@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
-import "./styles/App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
+
+import "./styles/App.scss";
 
 import { fetchCategories, fetchProducts } from "./services/productsService";
 import { productsActions } from "./store/products-slice";
+import { cartActions } from "./store/cart-slice";
 
 import Layout from "./components/Layout/Layout";
+import Loading from "./components/pages/Loading";
+
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+const priceFromLocalStorage = JSON.parse(localStorage.getItem("price") || "");
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +22,13 @@ function App() {
   const products = useSelector((state: RootStateOrAny) => state.products);
 
   useEffect(() => {
+    dispatch(
+      cartActions.getItemsFromLocalStorage({
+        items: cartFromLocalStorage,
+        price: priceFromLocalStorage,
+      })
+    );
+
     setIsLoading(true);
     fetchProducts()
       .then((data: any) => {
@@ -33,9 +46,11 @@ function App() {
 
   return (
     <Router>
-      {!isLoading && <Layout />}
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && error && <div>Something went wrong!</div>}
+      <div className="App">
+        {!isLoading && <Layout />}
+        {isLoading && <Loading />}
+        {!isLoading && error && <div>Something went wrong!</div>}
+      </div>
     </Router>
   );
 }
