@@ -29,9 +29,10 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
           id={item.id}
           title={item.title}
           amount={item.amount}
-          totalPrice={item.totalPrice}
           price={item.price}
           key={item.id}
+          time={item.time}
+          date={item.date}
         />
       ))}
     </ul>

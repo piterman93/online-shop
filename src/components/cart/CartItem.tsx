@@ -9,8 +9,9 @@ interface CartItemProps {
   id: number;
   title: string;
   price: number;
-  totalPrice: number;
   amount: number;
+  time: string;
+  date: string;
 }
 
 const CartItem: React.FC<CartItemProps> = ({
@@ -18,7 +19,8 @@ const CartItem: React.FC<CartItemProps> = ({
   id,
   price,
   title,
-  totalPrice,
+  time,
+  date,
 }) => {
   const dispatch = useDispatch();
 
@@ -40,6 +42,8 @@ const CartItem: React.FC<CartItemProps> = ({
           <span className="price">{itemPrice}</span>
           <span className="amount">x {amount}</span>
         </div>
+        <h6 className="time">Time added: {time}</h6>
+        <h6 className="time">Date added: {date}</h6>
       </div>
       <div className="actions">
         <button onClick={() => removeItemHandler(id, price)}>−</button>

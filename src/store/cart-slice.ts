@@ -6,6 +6,8 @@ interface CartItem {
   title: string;
   amount: number;
   totalPrice: number;
+  time: string;
+  date: string;
 }
 
 interface InitialCartState {
@@ -31,16 +33,14 @@ const cartSlice = createSlice({
     toggle(state) {
       state.isCartVisible = !state.isCartVisible;
     },
-    // replaceCart(state, action) {
-    //   state.totalAmount = action.payload.totalAmount;
-    //   state.items = action.payload.items;
-    // },
     addToCart(state, action) {
       state.totalPrice += action.payload.price;
       state.changed = true;
       state.totalAmount++;
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
+      const time = new Date().toLocaleTimeString();
+      const date = new Date().toLocaleDateString();
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
@@ -48,10 +48,14 @@ const cartSlice = createSlice({
           amount: 1,
           totalPrice: newItem.price,
           title: newItem.title,
+          time: time,
+          date: date,
         });
       } else {
         existingItem.amount = existingItem.amount + 1;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
+        existingItem.time = time;
+        existingItem.date = date;
       }
     },
     removeFromCart(state, action) {
