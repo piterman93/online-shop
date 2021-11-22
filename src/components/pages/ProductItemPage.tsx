@@ -32,7 +32,7 @@ const ProductItemPage: React.FC = () => {
           <div className="actions">
             <button
               className="button__cart"
-              onClick={() => addItemToCart(id, title, price)}
+              onClick={() => addItemToCart(id, price, title)}
             >
               Add to Cart
             </button>

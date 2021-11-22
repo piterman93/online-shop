@@ -12,6 +12,7 @@ interface InitialCartState {
   isCartVisible: boolean;
   items: CartItem[];
   totalAmount: number;
+  totalPrice: number;
   changed: boolean;
 }
 
@@ -19,6 +20,7 @@ const initialState: InitialCartState = {
   isCartVisible: false,
   items: [],
   totalAmount: 0,
+  totalPrice: 0,
   changed: false,
 };
 
@@ -34,6 +36,7 @@ const cartSlice = createSlice({
     //   state.items = action.payload.items;
     // },
     addToCart(state, action) {
+      state.totalPrice += action.payload.price;
       state.changed = true;
       state.totalAmount++;
       const newItem = action.payload;
@@ -52,9 +55,10 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart(state, action) {
+      const { id, price } = action.payload;
+      state.totalPrice -= price;
       state.changed = true;
       state.totalAmount--;
-      const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
       if (existingItem!.amount === 1) {
         state.items = state.items.filter((item) => item.id !== id);

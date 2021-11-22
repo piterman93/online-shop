@@ -13,7 +13,7 @@ const Backdrop: React.FC<ModalProps> = ({ onClose }) => {
 };
 
 const ModalOverlay: React.FC = ({ children }) => {
-  return <div className="modal">{children}</div>;
+  return <div className="content">{children}</div>;
 };
 
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {

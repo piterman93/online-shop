@@ -9,12 +9,11 @@
     background-color: rgba(0, 0, 0, 0.75);
   }
 
-  .modal {
+  .content {
     position: fixed;
     top: 15vh;
-    left: 5%;
-    width: 90%;
-    height: 200px;
+    left: 15%;
+    width: 70%;
     background-color: white;
     padding: 1rem;
     border-radius: 14px;
@@ -75,27 +74,49 @@
       }
     }
 
-    .actions {
+    .total {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .actions {
+      text-align: right;
+      display: flex;
+      justify-content: flex-end;
 
       button {
         font: inherit;
         font-weight: bold;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         color: #8a2b06;
         border: 1px solid #8a2b06;
-        width: 3rem;
         text-align: center;
-        border-radius: 6px;
+        border-radius: 10px;
         background-color: transparent;
         cursor: pointer;
         margin-left: 1rem;
         margin: 0.25rem;
+        padding: 0.25rem 1rem;
+        transition: 0.2s;
+
+        &.order {
+          background-color: #8a2b06;
+          color: white;
+
+          &:hover,
+          &:active {
+            background-color: #611f06;
+          }
+        }
 
         &:hover,
         &:active {
-          background-color: #8a2b06;
+          background-color: #5a1a01;
+          border-color: #5a1a01;
           color: white;
         }
       }
