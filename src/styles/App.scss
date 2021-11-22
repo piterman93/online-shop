@@ -20,12 +20,52 @@
 
         li {
           font-size: 18px;
+          position: relative;
+
+          &:hover {
+            .productsList {
+              opacity: 1;
+            }
+          }
+
           a {
             display: inline-block;
             text-decoration: none;
             margin: 1rem;
             padding: 0.25rem 0.5rem;
             color: white;
+          }
+          .productsList {
+            margin: 0 1rem;
+            padding: 0.25rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: absolute;
+            background-color: #8a2b06;
+            z-index: 11;
+            opacity: 0;
+            transition: 0.2s;
+
+            li {
+              cursor: pointer;
+              color: white;
+              min-width: 200px;
+              padding: 0.25rem 0.5rem;
+              margin-bottom: 0.25rem;
+              transition: 0.1s;
+              background-color: #4d170100;
+              text-transform: capitalize;
+
+              &:hover {
+                background-color: #4d1601;
+              }
+
+              a {
+                margin: 0;
+                padding: 0;
+              }
+            }
           }
         }
       }
@@ -117,5 +157,65 @@
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  .products {
+    h1 {
+      padding-left: 2rem;
+      margin-top: 2rem;
+    }
+    .underline {
+      display: inline-block;
+      width: 75px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: #8a2b06;
+      margin-left: 2rem;
+    }
+
+    .wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 2rem;
+
+      .product {
+        width: 320px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+          -webkit-box-shadow: 0px 0px 15px -2px rgba(66, 68, 90, 1);
+          -moz-box-shadow: 0px 0px 15px -2px rgba(66, 68, 90, 1);
+          box-shadow: 0px 0px 15px -2px rgba(66, 68, 90, 1);
+        }
+
+        h6 {
+          text-align: center;
+          font-weight: bold;
+          margin-top: 1rem;
+        }
+
+        img {
+          width: 70%;
+          height: 70%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .card {
+    margin: 1rem auto;
+    border-radius: 6px;
+    background-color: rgb(247, 247, 243);
+    padding: 1rem;
   }
 }

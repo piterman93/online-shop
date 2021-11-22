@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   categories: [],
   products: [],
+  activeCategory: "",
 };
 
 const productsSlice = createSlice({
@@ -14,6 +15,9 @@ const productsSlice = createSlice({
     },
     setProducts(state, action) {
       state.products = action.payload;
+    },
+    setActiveCategory(state, action) {
+      state.activeCategory = action.payload;
     },
   },
 });

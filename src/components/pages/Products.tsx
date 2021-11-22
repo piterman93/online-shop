@@ -1,46 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-
-import { fetchCategories, fetchProducts } from "../../services/productsService";
-import { productsActions } from "../../store/products-slice";
+import React from "react";
+import { useSelector, RootStateOrAny } from "react-redux";
+import ProductItem from "../products/ProductItem";
 
 const Products: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const productsState = useSelector((state: RootStateOrAny) => state.products);
 
-  const dispatch = useDispatch();
-
-  const products = useSelector((state: RootStateOrAny) => state.products);
-
-  useEffect(() => {
-    if (products.products.length === 0) {
-      setIsLoading(true);
-      fetchProducts()
-        .then((data) => {
-          dispatch(productsActions.setProducts(data));
-        })
-        .catch((error) => setError(error));
-    }
-
-    if (products.categories.length === 0) {
-      fetchCategories()
-        .then((data) => {
-          dispatch(productsActions.setCategories(data));
-          setIsLoading(false);
-        })
-        .catch((error) => setError(error));
-    }
-  }, [dispatch, products.products.length, products.categories.length]);
-
-  const content = isLoading ? (
-    <div className="loading">Loading...</div>
-  ) : error ? (
-    <div>Something went wrong...</div>
-  ) : (
-    <div>Products</div>
+  console.log(productsState.activeCategory);
+  const activeProducts = productsState.products.filter(
+    (product: any) =>
+      product.category.toUpperCase() ===
+      productsState.activeCategory.toUpperCase()
   );
 
-  return <div>{content}</div>;
+  const productsList = activeProducts.map((product: any) => (
+    <ProductItem
+      key={product.id}
+      src={product.image}
+      title={product.title}
+      price={product.price}
+    />
+  ));
+
+  return (
+    <div className="products">
+      <h1>Products</h1>
+      <span className="underline"></span>
+      <div className="wrapper">{productsList}</div>
+    </div>
+  );
 };
 
 export default Products;
