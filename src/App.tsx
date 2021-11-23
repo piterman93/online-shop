@@ -11,8 +11,8 @@ import { cartActions } from "./store/cart-slice";
 import Layout from "./components/Layout/Layout";
 import Loading from "./components/pages/Loading";
 
-const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart")!);
-const priceFromLocalStorage = JSON.parse(localStorage.getItem("price")!);
+const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+const priceFromLocalStorage = JSON.parse(localStorage.getItem("price") || "");
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
