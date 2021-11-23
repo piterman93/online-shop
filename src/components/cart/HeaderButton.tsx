@@ -38,7 +38,7 @@ const HeaderButton: React.FC = () => {
       <span className="icon">
         <Icon />
       </span>
-      <span>Your cart</span>
+      <span className="text">Your cart</span>
       <span className="badge">{numberOfCartItems}</span>
     </button>
   );

@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import "./index.scss";
 
 .App {
   font-family: "PT Sans", sans-serif;
@@ -10,18 +11,54 @@
     align-items: center;
     justify-content: space-around;
 
+    @media screen and (max-width: 320px) {
+      min-width: 320px;
+    }
+
+    @include mobile {
+      height: 15vh;
+    }
+
+    h1 {
+      @include mobile {
+        margin: 0;
+      }
+
+      @media screen and (max-width: 450px) {
+        display: none;
+      }
+    }
+
     nav {
-      ul {
+      .navigationList {
         margin: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
         list-style-type: none;
 
+        & > li:nth-child(3) {
+          margin-left: 1rem;
+        }
+
+        @include mobile {
+          & > li:first-child {
+            display: none;
+          }
+          & > li:nth-child(2) {
+            display: none;
+          }
+        }
+
         li {
           font-size: 18px;
           position: relative;
           cursor: pointer;
+
+          @include mobile {
+            margin-left: 0;
+            margin-right: 1rem;
+          }
 
           &:hover {
             .productsList {
@@ -32,13 +69,13 @@
           a {
             display: inline-block;
             text-decoration: none;
-            margin: 1rem;
             padding: 0.25rem 0.5rem;
             color: white;
+            margin-left: 1rem;
           }
           .productsList {
-            margin-top: 1.4rem;
-            padding: 0.25rem 0.5rem;
+            margin-top: 1.2rem;
+            padding: 0.5rem 0.5rem;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -47,6 +84,7 @@
             z-index: 11;
             opacity: 0;
             transition: 0.2s;
+            list-style-type: none;
 
             li {
               cursor: pointer;
@@ -57,6 +95,10 @@
               transition: 0.1s;
               background-color: #4d170100;
               text-transform: capitalize;
+
+              @media screen and (max-width: 450px) {
+                min-width: 150px;
+              }
 
               &:hover {
                 background-color: #4d1601;
@@ -85,6 +127,12 @@
       border-radius: 25px;
       font-weight: bold;
       margin-left: 2rem;
+
+      @include mobile {
+        padding: 0.75rem 1rem;
+        margin-right: 2rem;
+        margin-left: 1rem;
+      }
 
       &:hover,
       &:active {
@@ -126,6 +174,12 @@
         margin-right: 0.5rem;
       }
 
+      .text {
+        @include mobile {
+          display: none;
+        }
+      }
+
       .badge {
         background-color: #b94517;
         padding: 0.25rem 1rem;
@@ -140,11 +194,16 @@
     height: 90vh;
     position: relative;
 
+    @media screen and (max-width: 320px) {
+      width: 320px;
+      height: 100vh;
+    }
+
     h1 {
       width: 100%;
       position: absolute;
       color: white;
-      padding: 1rem 0;
+      padding: 1rem 1rem;
       background-color: rgba(0, 0, 0, 0.603);
       text-align: center;
       top: 50%;
@@ -182,6 +241,16 @@
       flex-wrap: wrap;
       padding: 2rem;
 
+      @media screen and (max-width: 400px) {
+        width: 90%;
+        padding: 1rem;
+        margin: 0 auto;
+      }
+
+      @media screen and (max-width: 320px) {
+        min-width: 320px;
+      }
+
       a {
         text-decoration: none;
         color: black;
@@ -197,6 +266,16 @@
         cursor: pointer;
         transition: 0.2s;
 
+        @media screen and (max-width: 400px) {
+          width: 250px;
+          height: 320px;
+        }
+
+        @media screen and (max-width: 320px) {
+          width: 220px;
+          height: 320px;
+        }
+
         &:hover {
           -webkit-box-shadow: 0px 0px 15px -2px rgba(66, 68, 90, 1);
           -moz-box-shadow: 0px 0px 15px -2px rgba(66, 68, 90, 1);
@@ -207,6 +286,9 @@
           text-align: center;
           font-weight: bold;
           margin-top: 1rem;
+          @media screen and (max-width: 320px) {
+            font-size: 14px;
+          }
         }
 
         img {
@@ -218,16 +300,41 @@
     }
 
     .product__details {
-      margin-top: 2rem;
+      margin: 2rem auto;
+
       width: 90%;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
 
+      @include mobile {
+        flex-direction: column;
+      }
+
+      @media screen and (max-width: 320px) {
+        width: 260px;
+        margin-left: 30px;
+      }
+
       .image {
         width: 450px;
         height: 450px;
+
+        @media screen and (max-width: 1100px) {
+          width: 400px;
+          height: 400px;
+        }
+
+        @media screen and (max-width: 800px) {
+          width: 350px;
+          height: 350px;
+        }
+
+        @media screen and (max-width: 450px) {
+          width: 250px;
+          height: 250px;
+        }
 
         img {
           width: 100%;
@@ -237,7 +344,7 @@
       }
 
       .description {
-        flex: 0.7;
+        flex: 0.8;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -269,6 +376,7 @@
             color: white;
             cursor: pointer;
             padding: 0.5rem 2rem;
+            margin: 0.5rem;
 
             &:hover,
             &:active {
@@ -282,7 +390,7 @@
             border: 1px solid #8a2b06;
             padding: 0.5rem 2rem;
             border-radius: 25px;
-            margin-left: 1rem;
+            margin: 0.5rem;
 
             &:hover,
             &:active {

@@ -33,16 +33,16 @@ const Header: React.FC<HeaderProps> = ({ showCartHandler }) => {
     <header className="header">
       <h1>Shop App</h1>
       <nav>
-        <ul>
+        <ul className="navigationList">
           <li>
             <NavLink to="/home">About us</NavLink>
           </li>
           <li>
-            Products
-            <ul className="productsList">{productsList}</ul>
+            <NavLink to="/home">Contact</NavLink>
           </li>
           <li>
-            <NavLink to="/home">Contact</NavLink>
+            Products
+            <ul className="productsList">{productsList}</ul>
           </li>
           <li onClick={showCartHandler}>
             <HeaderButton />
