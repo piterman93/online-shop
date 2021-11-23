@@ -45,7 +45,7 @@ function App() {
   }, [dispatch, products.products.length, products.categories.length]);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         {!isLoading && <Layout />}
         {isLoading && <Loading />}
