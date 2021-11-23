@@ -39,10 +39,10 @@ const Layout: React.FC = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="home" element={<Home />} />
-            <Route path="products" element={<Products />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/products" element={<Products />} />
             <Route
-              path="products/:category/:productId"
+              path="/products/:category/:productId"
               element={<ProductItemPage />}
             />
             <Route path="*" element={<Navigate to="/home" />} />
