@@ -7,6 +7,7 @@ import "./styles/App.scss";
 import { fetchCategories, fetchProducts } from "./services/productsService";
 import { productsActions } from "./store/products-slice";
 import { cartActions } from "./store/cart-slice";
+import { FetchedProducts } from "./store/products-slice";
 
 import Layout from "./components/Layout/Layout";
 import Loading from "./components/pages/Loading";
@@ -31,17 +32,17 @@ function App() {
 
     setIsLoading(true);
     fetchProducts()
-      .then((data: any) => {
+      .then((data: FetchedProducts) => {
         dispatch(productsActions.setProducts(data));
       })
       .catch((error: any) => setError(error));
 
     fetchCategories()
-      .then((data) => {
+      .then((data: string[]) => {
         dispatch(productsActions.setCategories(data));
         setIsLoading(false);
       })
-      .catch((error) => setError(error));
+      .catch((error: any) => setError(error));
   }, [dispatch, products.products.length, products.categories.length]);
 
   return (

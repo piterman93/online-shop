@@ -1,8 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export interface Product {
+  category: string;
+  description: string;
+  id: number;
+  image: string;
+  price: number;
+  rating: {
+    count: number;
+    rate: string;
+  };
+  title: string;
+}
+
+export type FetchedProducts = Product[];
+
 interface ProductsState {
   categories: string[];
-  products: [];
+  products: FetchedProducts;
   activeCategory: string;
 }
 

@@ -60,9 +60,13 @@
             margin-right: 1rem;
           }
 
+          &:nth-child(3) {
+            padding: 3.25vh 0;
+          }
+
           &:hover {
             .productsList {
-              opacity: 1;
+              display: block;
             }
           }
 
@@ -82,9 +86,13 @@
             position: absolute;
             background-color: #8a2b06;
             z-index: 11;
-            opacity: 0;
+            display: none;
             transition: 0.2s;
             list-style-type: none;
+
+            &:hover {
+              display: block;
+            }
 
             li {
               cursor: pointer;
