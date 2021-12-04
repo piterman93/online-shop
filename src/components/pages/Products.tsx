@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 import { Product, productsActions } from "../../store/products-slice";
 import TextField from "@mui/material/TextField";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 import ProductItem from "../products/ProductItem";
 
 const Products: React.FC = () => {
-  const [searchProducts, setSearchProducts] = useState<Product[] | []>([]);
-  // const [sortedProducts, setSortedProducts] = useState<Product[] | []>([]);
+  const [activePageProducts, setActivePageProducts] = useState<Product[] | []>(
+    []
+  );
   const [inputValue, setInputValue] = useState("");
+  const [sortType, setSortType] = useState("");
 
   const productsState = useSelector((state: RootStateOrAny) => state.products);
   const dispatch = useDispatch();
@@ -25,22 +29,27 @@ const Products: React.FC = () => {
     const filteredProductsList = activeProducts.filter((item: Product) =>
       item.title.toLowerCase().includes(inputSearch)
     );
-    setSearchProducts(filteredProductsList);
+    setActivePageProducts(filteredProductsList);
   };
 
-  const productsListToMap =
-    searchProducts.length < activeProducts.length && inputValue.length > 0
-      ? searchProducts
-      : activeProducts;
+  const sortAscending = () => {
+    const sortedList = activePageProducts.sort(
+      (a: any, b: any) => a.price - b.price
+    );
+    setSortType("asc");
+    setActivePageProducts(sortedList);
+  };
 
-  // const sortAscending = () => {
-  //   const sortedList = productsListToMap.sort((a: any, b: any) =>
-  //     a.price < b.price ? -1 : a.price > b.price ? 1 : 0
-  //   );
-  //   setSortedProducts(sortedList);
-  // };
+  const sortDescending = () => {
+    const sortedList = activePageProducts.sort(
+      (a: any, b: any) => b.price - a.price
+    );
+    setSortType("desc");
+    setActivePageProducts(sortedList);
+  };
 
   useEffect(() => {
+    setActivePageProducts(activeProducts);
     const activeCategoryFromLocalStorage =
       localStorage.getItem("activeCategory") || "";
     if (!productsState.activeCategory) {
@@ -48,9 +57,9 @@ const Products: React.FC = () => {
         productsActions.setActiveCategory(activeCategoryFromLocalStorage)
       );
     }
-  }, [productsState.activeCategory, dispatch, activeProducts]);
+  }, [productsState.activeCategory, dispatch]);
 
-  const productsList = productsListToMap.map((product: any) => (
+  const productsList = activePageProducts.map((product: any) => (
     <ProductItem
       key={product.id}
       id={product.id}
@@ -76,11 +85,15 @@ const Products: React.FC = () => {
         />
       </div>
       <div className="sort">
-        {/* <button onClick={sortAscending}>+</button> */}
-        {/* <button>-</button> */}
+        <button onClick={sortAscending}>
+          Price <ArrowUpwardIcon />
+        </button>
+        <button onClick={sortDescending}>
+          Price <ArrowDownwardIcon />
+        </button>
       </div>
       <div className="wrapper">
-        {searchProducts.length === 0 && inputValue.length > 0 ? (
+        {activePageProducts.length === 0 && inputValue.length > 0 ? (
           <h3>No products found!</h3>
         ) : (
           productsList
