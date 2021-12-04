@@ -233,12 +233,17 @@
       margin-top: 2rem;
     }
     .underline {
-      display: inline-block;
+      display: block;
       width: 75px;
       height: 5px;
       border-radius: 5px;
       background-color: #8a2b06;
       margin-left: 2rem;
+    }
+
+    .search {
+      margin-left: 3rem;
+      margin-top: 2rem;
     }
 
     .wrapper {
