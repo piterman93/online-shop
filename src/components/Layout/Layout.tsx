@@ -32,23 +32,21 @@ const Layout: React.FC = () => {
   return (
     <React.Fragment>
       {showCart && <Cart onClose={closeCartHandler} />}
-      <div className="App">
-        <header>
-          <Header showCartHandler={showCartHandler} />
-        </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route
-              path="/products/:category/:productId"
-              element={<ProductItemPage />}
-            />
-            <Route path="*" element={<Navigate to="/home" />} />
-          </Routes>
-        </main>
-      </div>
+      <header>
+        <Header showCartHandler={showCartHandler} />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route
+            path="/products/:category/:productId"
+            element={<ProductItemPage />}
+          />
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </main>
     </React.Fragment>
   );
 };
