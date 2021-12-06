@@ -12,7 +12,7 @@ const Products: React.FC = () => {
     []
   );
   const [inputValue, setInputValue] = useState("");
-  const [sortType, setSortType] = useState("");
+  const [helperState, setHelperState] = useState(0);
 
   const productsState = useSelector((state: RootStateOrAny) => state.products);
   const dispatch = useDispatch();
@@ -32,19 +32,18 @@ const Products: React.FC = () => {
     setActivePageProducts(filteredProductsList);
   };
 
-  const sortAscending = () => {
-    const sortedList = activePageProducts.sort(
-      (a: any, b: any) => a.price - b.price
-    );
-    setSortType("asc");
-    setActivePageProducts(sortedList);
-  };
-
-  const sortDescending = () => {
-    const sortedList = activePageProducts.sort(
-      (a: any, b: any) => b.price - a.price
-    );
-    setSortType("desc");
+  const sortHandler = (sortType: string) => {
+    let sortedList;
+    if (sortType === "ascending") {
+      sortedList = activePageProducts.sort(
+        (a: any, b: any) => a.price - b.price
+      );
+    } else {
+      sortedList = activePageProducts.sort(
+        (a: any, b: any) => b.price - a.price
+      );
+    }
+    setHelperState((prevState: number) => (prevState += 1));
     setActivePageProducts(sortedList);
   };
 
@@ -85,10 +84,10 @@ const Products: React.FC = () => {
         />
       </div>
       <div className="sort">
-        <button onClick={sortAscending}>
+        <button onClick={() => sortHandler("ascending")}>
           Price <ArrowUpwardIcon />
         </button>
-        <button onClick={sortDescending}>
+        <button onClick={() => sortHandler("")}>
           Price <ArrowDownwardIcon />
         </button>
       </div>
